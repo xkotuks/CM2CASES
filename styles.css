@@ -1,0 +1,309 @@
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    background: #09090B; /* Темный фон */
+    color: #ffffff; /* Светлый текст */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #18181B; /* Чуть более темный фон для шапки */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #ffffff80;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffffff; /* Цвет при наведении */
+}
+
+.nav-link.active {
+    color: #ffffff; /* Цвет активной вкладки */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.balance span {
+    color: #22c55e;
+    font-size: 16px;
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profile-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.cases-section, .inventory-section, .history-section, .stats-section {
+    width: 100%;
+    text-align: center;
+}
+
+.case-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    padding: 10px;
+}
+
+.case-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.case-grid::-webkit-scrollbar-track {
+    background: #09090B;
+}
+
+.case-grid::-webkit-scrollbar-thumb {
+    background: #4c6b22;
+    border-radius: 4px;
+}
+
+.case-card {
+    background: #18181B;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    flex: 0 0 auto;
+    width: 350px;
+}
+
+.case-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.buy-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #15803d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #16a34a;
+}
+
+.inventory-section {
+    background: #18181B;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 600px;
+}
+
+#inventory-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.inventory-item {
+    background: #18181B;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 150px;
+}
+
+.inventory-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.inventory-item p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.open-case-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.open-case-button:hover {
+    background-color: #2563eb;
+}
+
+/* Стили для toast-уведомления */
+.toast {
+    display: none; /* По умолчанию скрыто */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #18181B;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    font-size: 16px;
+    animation: fade-in-out 3s ease-in-out forwards;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+/* Стили для раздела истории */
+.history-section {
+    background: #18181B;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.history-entry {
+    background: #27272A;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Стили для раздела статистики */
+.stats-section {
+    background: #18181B;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.stats-section p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.stats-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+/* Стили для кнопки "Продать" */
+.sell-button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #dc2626; /* Красный цвет для кнопки "Продать" */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sell-button:hover {
+    background-color: #b91c1c;
+}
+
+/* Улучшенные стили для истории */
+.history-entry {
+    background: #27272A;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.history-entry span {
+    font-size: 12px;
+    color: #a8a29e;
+}

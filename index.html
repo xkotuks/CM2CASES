@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 CASES</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="cs2-logo.png" alt="CS2 Logo">
+            <h1>CM2 CASES</h1>
+        </div>
+        <nav class="header-nav">
+            <a href="#" class="nav-link active" data-section="cases-section">Кейсы</a>
+            <a href="#" class="nav-link" data-section="inventory-section">Инвентарь</a>
+            <a href="#" class="nav-link" data-section="history-section">История</a>
+            <a href="#" class="nav-link" data-section="stats-section">Статистика</a>
+        </nav>
+        <div class="header-right">
+            <div class="balance">
+                <span id="balance">$1000.00</span>
+            </div>
+            <!-- Добавленная кнопка профиля -->
+            <div class="profile-btn">
+                <img src="profile.jpg" alt="Profile" width="40" height="40">
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Раздел Кейсов -->
+        <div class="cases-section" id="cases-section">
+            <div class="case-grid">
+                <div class="case-card">
+                    <img src="1-case.png" alt="">
+                    <p>Пистолетный</p>
+                    <button class="buy-button">Открыть за $100.00</button>
+                </div>
+                <div class="case-card">
+                    <img src="2-case.png" alt="">
+                    <p>Автоматный</p>
+                    <button class="buy-button">Открыть за $300.00</button>
+                </div>
+                <div class="case-card">
+                    <img src="3-case.png" alt="">
+                    <p>Снайперский</p>
+                    <button class="buy-button">Открыть за $500.00</button>
+                </div>
+                <div class="case-card">
+                    <img src="4-case.png" alt="">
+                    <p>Ножевой</p>
+                    <button class="buy-button">Открыть за $1000.00</button>
+                </div>
+            </div>
+        </div>
+        <!-- Раздел Инвентаря -->
+        <div class="inventory-section" id="inventory-section" style="display: none;">
+            <h2>Инвентарь</h2>
+            <div id="inventory-list"></div>
+        </div>
+        <!-- Раздел Истории -->
+        <div class="history-section" id="history-section" style="display: none;">
+            <h2>История</h2>
+        </div>
+        <!-- Раздел Статистики -->
+        <div class="stats-section" id="stats-section" style="display: none;">
+            <h2>Статистика</h2>
+        </div>
+    </main>
+
+    <!-- Toast-уведомление -->
+    <div id="toast" class="toast">
+        <span id="toast-message">Сообщение</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
