@@ -4,7 +4,402 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS2 CASES</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #09090B;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #18181B;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #ffffff80;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .balance span {
+            color: #22c55e;
+            font-size: 16px;
+        }
+
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .profile-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .cases-section, .inventory-section, .history-section, .stats-section {
+            width: 100%;
+            text-align: center;
+        }
+
+        .case-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .case-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .case-grid::-webkit-scrollbar-track {
+            background: #09090B;
+        }
+
+        .case-grid::-webkit-scrollbar-thumb {
+            background: #4c6b22;
+            border-radius: 4px;
+        }
+
+        .case-card {
+            background: #18181B;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            flex: 0 0 auto;
+            width: 350px;
+        }
+
+        .case-card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #15803d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #16a34a;
+        }
+
+        .inventory-section {
+            background: #18181B;
+            border-radius: 5px;
+            padding:  personally20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        #inventory-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .inventory-item {
+            background: #18181B;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 150px;
+        }
+
+        .inventory-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .inventory-item p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+
+        .sell-button {
+            margin-top: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #dc2626;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .sell-button:hover {
+            background-color: #b91c1c;
+        }
+
+        .toast {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #18181B;
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-size: 16px;
+            animation: fade-in-out 3s ease-in-out forwards;
+        }
+
+        @keyframes fade-in-out {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+
+        .history-section {
+            background: #18181B;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .history-entry {
+            background: #27272A;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .history-entry span {
+            font-size: 12px;
+            color: #a8a29e;
+        }
+
+        .stats-section {
+            background: #18181B;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .roulette-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .roulette-container {
+            position: relative;
+            width: 800px;
+            height: 200px;
+            background: #18181B;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #4c6b22;
+        }
+
+        .roulette {
+            display: flex;
+            position: absolute;
+            height: 100%;
+            transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .roulette-item {
+            width: 150px;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #27272A;
+            margin: 0 2px;
+            border-radius: 5px;
+        }
+
+        .roulette-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .roulette-item p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .roulette-pointer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 100%;
+            background: #ff0000;
+            z-index: 10;
+        }
+
+        .item-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item-modal-content {
+            background: #18181B;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .item-modal-content img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .item-modal-content p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .item-modal-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .take-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #15803d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .take-button:hover {
+            background-color: #16a34a;
+        }
+
+        .modal-sell-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #dc2626;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-sell-button:hover {
+            background-color: #b91c1c;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,14 +417,12 @@
             <div class="balance">
                 <span id="balance">$1000.00</span>
             </div>
-            <!-- Добавленная кнопка профиля -->
             <div class="profile-btn">
                 <img src="profile.jpg" alt="Profile" width="40" height="40">
             </div>
         </div>
     </header>
     <main>
-        <!-- Раздел Кейсов -->
         <div class="cases-section" id="cases-section">
             <div class="case-grid">
                 <div class="case-card">
@@ -54,26 +447,328 @@
                 </div>
             </div>
         </div>
-        <!-- Раздел Инвентаря -->
         <div class="inventory-section" id="inventory-section" style="display: none;">
             <h2>Инвентарь</h2>
             <div id="inventory-list"></div>
         </div>
-        <!-- Раздел Истории -->
         <div class="history-section" id="history-section" style="display: none;">
             <h2>История</h2>
         </div>
-        <!-- Раздел Статистики -->
         <div class="stats-section" id="stats-section" style="display: none;">
             <h2>Статистика</h2>
         </div>
     </main>
 
-    <!-- Toast-уведомление -->
     <div id="toast" class="toast">
         <span id="toast-message">Сообщение</span>
     </div>
 
-    <script src="script.js"></script>
+    <div id="roulette-modal" class="roulette-modal">
+        <div class="roulette-container">
+            <div id="roulette" class="roulette"></div>
+            <div class="roulette-pointer"></div>
+        </div>
+    </div>
+
+    <div id="item-modal" class="item-modal">
+        <div class="item-modal-content">
+            <img id="item-image" src="" alt="">
+            <p id="item-name"></p>
+            <p id="item-price"></p>
+            <div class="item-modal-buttons">
+                <button class="take-button">Забрать</button>
+                <button class="modal-sell-button">Продать</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let balance = 1000;
+            const inventory = [];
+            const history = [];
+            const stats = {
+                totalCasesOpened: 0,
+                totalSpent: 0
+            };
+
+            const balanceElement = document.getElementById('balance');
+            const inventoryList = document.getElementById('inventory-list');
+            const historySection = document.getElementById('history-section');
+            const statsSection = document.getElementById('stats-section');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            const rouletteModal = document.getElementById('roulette-modal');
+            const roulette = document.getElementById('roulette');
+            const itemModal = document.getElementById('item-modal');
+            const itemImage = document.getElementById('item-image');
+            const itemName = document.getElementById('item-name');
+            const itemPrice = document.getElementById('item-price');
+            const takeButton = document.querySelector('.take-button');
+            const modalSellButton = document.querySelector('.modal-sell-button');
+
+            const caseItems = {
+                'Пистолетный': [
+                    { name: 'USP', price: 200, image: 'usp.png' },
+                    { name: 'GLOCK', price: 300, image: 'glock.png' },
+                    { name: 'P250', price: 250, image: 'p250.png' },
+                    { name: 'FIVESEVEN', price: 250, image: 'fiveseven.png' },
+                    { name: 'TEC9', price: 250, image: 'tec9.png' },
+                    { name: 'CZ75A', price: 250, image: 'cz75a.png' },
+                    { name: 'DEAGLE', price: 250, image: 'deagle.png' }
+                ],
+                'Автоматный': [
+                    { name: 'MP9', price: 200, image: 'mp9.png' },
+                    { name: 'MAC10', price: 300, image: 'mac10.png' },
+                    { name: 'MP7', price: 250, image: 'mp7.png' },
+                    { name: 'MP5', price: 250, image: 'mp5.png' },
+                    { name: 'UMP', price: 250, image: 'ump.png' },
+                    { name: 'P90', price: 250, image: 'p90.png' },
+                    { name: 'BIZON', price: 250, image: 'bizon.png' },
+                    { name: 'FAMAS', price: 250, image: 'famas.png' },
+                    { name: 'GALIL', price: 250, image: 'galil.png' },
+                    { name: 'M4A1S', price: 250, image: 'm4a1s.png' },
+                    { name: 'AK47', price: 250, image: 'ak47.png' }
+                ],
+                'Снайперский': [
+                    { name: 'AWP', price: 1000, image: 'awp.png' },
+                    { name: 'SSG 08', price: 400, image: 'ssg08.png' },
+                    { name: 'SCAR20', price: 350, image: 'scar20.png' }
+                ],
+                'Ножевой': [
+                    { name: 'Kerambit', price: 1000, image: 'kerambit.png' },
+                    { name: 'Butterfly', price: 1200, image: 'butterfly.png' },
+                ]
+            };
+
+            function loadGame() {
+                const savedData = JSON.parse(localStorage.getItem('gameData'));
+                if (savedData) {
+                    balance = savedData.balance;
+                    inventory.push(...savedData.inventory);
+                    history.push(...savedData.history);
+                    Object.assign(stats, savedData.stats);
+                }
+                updateBalance(0);
+                updateInventory();
+                updateHistoryDisplay();
+                updateStatsDisplay();
+            }
+
+            function saveGame() {
+                const gameData = { balance, inventory, history, stats };
+                localStorage.setItem('gameData', JSON.stringify(gameData));
+            }
+
+            function updateBalance(amount) {
+                balance += amount;
+                balanceElement.textContent = `$${Math.floor(balance)}`;
+                saveGame();
+            }
+
+            function updateInventory() {
+                inventoryList.innerHTML = '';
+                if (inventory.length === 0) {
+                    inventoryList.innerHTML = '<p>Инвентарь пуст</p>';
+                    return;
+                }
+
+                inventory.forEach((item, index) => {
+                    const minPrice = item.price * 0.8;
+                    const maxPrice = item.price * 1.2;
+                    const randomSellPrice = Math.floor(Math.random() * (maxPrice - minPrice) + minPrice);
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'inventory-item';
+                    itemDiv.innerHTML = `
+                        <img src="images/${item.image}" alt="${item.name}">
+                        <p>${item.name}</p>
+                        <button class="sell-button" data-index="${index}">Продать за $${randomSellPrice}</button>
+                    `;
+                    inventoryList.appendChild(itemDiv);
+                });
+
+                document.querySelectorAll('.sell-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = button.getAttribute('data-index');
+                        sellItem(index);
+                    });
+                });
+                saveGame();
+            }
+
+            function showToast(message) {
+                toastMessage.textContent = message;
+                toast.style.display = 'block';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 3000);
+            }
+
+            function sellItem(index) {
+                const soldItem = inventory.splice(index, 1)[0];
+                const minPrice = soldItem.price * 0.8;
+                const maxPrice = soldItem.price * 1.2;
+                const randomSellPrice = Math.floor(Math.random() * (maxPrice - minPrice) + minPrice);
+
+                updateBalance(randomSellPrice);
+                addToHistory(`Продан предмет "${soldItem.name}" за $${randomSellPrice}`);
+                updateInventory();
+                showToast(`Вы успешно продали "${soldItem.name}" за $${randomSellPrice}!`);
+            }
+
+            function addToHistory(entry) {
+                const timestamp = new Date().toLocaleString();
+                history.push(`${timestamp}: ${entry}`);
+                updateHistoryDisplay();
+                saveGame();
+            }
+
+            function updateHistoryDisplay() {
+                historySection.innerHTML = '<h2>История</h2>';
+                history.forEach((entry) => {
+                    const [time, action] = entry.split(': ');
+                    const entryElement = document.createElement('div');
+                    entryElement.className = 'history-entry';
+                    entryElement.innerHTML = `
+                        <p>${action}</p>
+                        <span>${time}</span>
+                    `;
+                    historySection.appendChild(entryElement);
+                });
+            }
+
+            function updateStats(price) {
+                stats.totalCasesOpened++;
+                stats.totalSpent += price;
+                updateStatsDisplay();
+                saveGame();
+            }
+
+            function updateStatsDisplay() {
+                statsSection.innerHTML = `
+                    <h2>Статистика</h2>
+                    <p>Всего открытых кейсов: ${stats.totalCasesOpened}</p>
+                    <p>Общая сумма потраченных денег: $${Math.floor(stats.totalSpent)}</p>
+                `;
+            }
+
+            function startRoulette(caseName, price) {
+                const items = caseItems[caseName];
+                const totalItems = 50;
+                const visibleItems = 5;
+                const winningIndex = Math.floor(Math.random() * items.length);
+                const winningItem = items[winningIndex];
+
+                roulette.innerHTML = '';
+                for (let i = 0; i < totalItems; i++) {
+                    const randomItem = items[Math.floor(Math.random() * items.length)];
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'roulette-item';
+                    itemDiv.innerHTML = `
+                        <img src="images/${randomItem.image}" alt="${randomItem.name}">
+                        <p>${randomItem.name}</p>
+                    `;
+                    roulette.appendChild(itemDiv);
+                }
+
+                rouletteModal.style.display = 'flex';
+                const itemWidth = 154;
+                const offset = (totalItems - visibleItems - winningIndex) * itemWidth;
+
+                setTimeout(() => {
+                    roulette.style.transform = `translateX(-${offset}px)`;
+                }, 100);
+
+                setTimeout(() => {
+                    rouletteModal.style.display = 'none';
+                    roulette.style.transform = 'translateX(0)';
+                    showItemModal(winningItem, caseName, price);
+                }, 5100);
+            }
+
+            function showItemModal(item, caseName, price) {
+                const minPrice = item.price * 0.8;
+                const maxPrice = item.price * 1.2;
+                const sellPrice = Math.floor(Math.random() * (maxPrice - minPrice) + minPrice);
+
+                itemImage.src = `images/${item.image}`;
+                itemName.textContent = item.name;
+                itemPrice.textContent = `Цена продажи: $${sellPrice}`;
+                itemModal.style.display = 'flex';
+
+                takeButton.onclick = () => {
+                    inventory.push(item);
+                    addToHistory(`Куплен кейс "${caseName}" за $${price}. Забран предмет: ${item.name}`);
+                    updateInventory();
+                    showToast(`Вы забрали "${item.name}"!`);
+                    itemModal.style.display = 'none';
+                    updateStats(price);
+                };
+
+                modalSellButton.onclick = () => {
+                    updateBalance(sellPrice);
+                    addToHistory(`Куплен кейс "${caseName}" за $${price}. Продан предмет: ${item.name} за $${sellPrice}`);
+                    showToast(`Вы продали "${item.name}" за $${sellPrice}!`);
+                    itemModal.style.display = 'none';
+                    updateStats(price);
+                };
+            }
+
+            document.querySelectorAll('.buy-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const caseCard = button.closest('.case-card');
+                    const caseName = caseCard.querySelector('p').textContent;
+                    const price = parseFloat(button.textContent.replace('Открыть за $', ''));
+
+                    if (balance >= price) {
+                        updateBalance(-price);
+                        startRoulette(caseName, price);
+                    } else {
+                        showToast('Недостаточно средств для покупки!');
+                    }
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = {
+                'cases-section': document.querySelector('#cases-section'),
+                'inventory-section': document.querySelector('#inventory-section'),
+                'history-section': document.querySelector('#history-section'),
+                'stats-section': document.querySelector('#stats-section')
+            };
+
+            const hideAllSections = () => {
+                Object.values(sections).forEach(section => {
+                    section.style.display = 'none';
+                });
+            };
+
+            const removeActiveClass = () => {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+            };
+
+            sections['cases-section'].style.display = 'block';
+            document.querySelector('.nav-link[data-section="cases-section"]').classList.add('active');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('data-section');
+                    hideAllSections();
+                    removeActiveClass();
+                    sections[sectionId].style.display = 'block';
+                    link.classList.add('active');
+                    if (sectionId === 'inventory-section') {
+                        updateInventory();
+                    }
+                });
+            });
+
+            loadGame();
+        });
+    </script>
 </body>
 </html>
